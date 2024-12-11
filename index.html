@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        form{
+            background-color: bisque;
+            width: 450px;
+            height: 250px;
+            padding-top: 10%;
+            padding-bottom: 5%;
+            border-radius: 50px;
+            
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h2>Sample Form</h2>
+    <form name="myForm" onsubmit="return validateForm()">
+        Name: <input type="text" name="name"><br><br>
+        Email: <input type="text" name="email"><br><br>
+        Phone: <input type="text" name="phone"><br><br>
+        Password: <input type="password" name="password"><br><br>
+        Date of Birth: <input type="text" name="dob"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    </center>
+    <script>
+        function validateForm() {
+            var name = document.forms["myForm"]["name"].value;
+            var email = document.forms["myForm"]["email"].value;
+            var phone = document.forms["myForm"]["phone"].value;
+            var password = document.forms["myForm"]["password"].value;
+            var dateofbirth = document.forms["myForm"]["dob"].value;
+
+            var nameRegex = /^[a-zA-Z\s]+$/;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var phoneRegex = /^\d{10}$/;
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            var dateofbirthRegex = /^\d{2}-\d{2}-\d{4}$/;
+
+
+            if (!nameRegex.test(name)) {
+                alert("Please enter a valid name.");
+                return false;
+            }
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            if (!phoneRegex.test(phone)) {
+                alert("Please enter a valid 10-digit phone number.");
+                return false;
+            }
+            if (!passwordRegex.test(password)) {
+                alert("Please enter a valid password ,start with uppercas,min 8 charaters,atleat one smallcase,special charaters and numbers.");
+                return false;
+            }
+            if (!dateofbirthRegex.test(dateofbirth)) {
+                alert("Please enter a valid date of birth in the format DD-MM-YYYY.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html> 
+
